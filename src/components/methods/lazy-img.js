@@ -47,12 +47,12 @@ const useImg = (observer = true) => {
     setResize(resize + 1) // cause a repaint
   }
 
-
   let doit
-  window.addEventListener('resize', () => {
-    clearTimeout(doit)
-    doit = setTimeout(repaint, 2000) // if it is not resizing for 2s, timeout won't be cleared
-  })
+  typeof window !== 'undefined' &&
+    window.addEventListener('resize', () => {
+      clearTimeout(doit)
+      doit = setTimeout(repaint, 2000) // if it is not resizing for 2s, timeout won't be cleared
+    })
 
   return observer
     ? [
