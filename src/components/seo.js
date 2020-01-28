@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 
 import { Config, SeoText } from '../utils/config'
 
-export const SEO = ({ type, blogGrid, blogPost, blogPage }) => {
+export const SEO = ({ type, blogGrid, blogPost, blogPage, extra = null }) => {
   const { canonical } = blogGrid || blogPost || blogPage
   const { page } = blogPage || ''
   const { tags } = blogGrid || ''
@@ -75,6 +75,9 @@ export const SEO = ({ type, blogGrid, blogPost, blogPage }) => {
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords.length > 0 ? keywords.join(`, `) : ''} />
       <meta name="robots" content={robots} />
+
+      {/* Extra tags */}
+      {extra && <meta {...extra} />}
 
       {/* Schema.org tags */}
       <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>

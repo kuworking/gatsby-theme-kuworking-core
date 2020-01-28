@@ -3,7 +3,7 @@ import { styles } from './styles'
 
 const kuworking = {
   ...styles,
-  initialColorMode: `light`, // rename default as light
+  initialColorModeName: `light`, // rename default as light
   colors,
 }
 
