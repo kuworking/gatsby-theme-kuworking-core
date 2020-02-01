@@ -1,11 +1,12 @@
-// v kw 2019.09.06
+// v2020.01.03
+
 import React, { useState, useRef, useEffect } from 'react'
 import styled from '@emotion/styled'
 
-const Observer = (el, setBackImg) => {
+const Observer = (el, setBackImg, adjustMasonry = null) => {
   if ('IntersectionObserver' in window && el) {
     const intersection = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach(async entry => {
         if (entry.isIntersecting) {
           let lazyImage = entry.target
           setBackImg(
@@ -23,6 +24,7 @@ const Observer = (el, setBackImg) => {
               ? lazyImage.dataset['1800px'] || lazyImage.dataset.standard
               : lazyImage.dataset.standard
           )
+          adjustMasonry()
           observer.unobserve(lazyImage)
         }
       })
@@ -31,7 +33,7 @@ const Observer = (el, setBackImg) => {
   }
 }
 
-const useImg = (observer = true) => {
+const useImg = (observer = true, adjustMasonry = null) => {
   const image_ref = useRef()
   const [backImg, setBackImg] = useState('')
   const [resize, setResize] = useState(0)
@@ -57,7 +59,7 @@ const useImg = (observer = true) => {
   return observer
     ? [
         el => {
-          Observer(el, setBackImg)
+          Observer(el, setBackImg, adjustMasonry)
           return image_ref
         },
         backImg,
@@ -65,14 +67,14 @@ const useImg = (observer = true) => {
     : [image_ref, backImg, setBackImg, resize]
 }
 
-export const LazyBackgroundImg = ({ data_image, component, title = 'image' }) => {
-  const [ref, src] = useImg()
+export const LazyBackgroundImg = ({ data_image, component, title = 'image', adjustMasonry = null }) => {
+  const [ref, src] = useImg(true, adjustMasonry)
   const dataset = Object.assign({}, ...Object.entries(data_image).map(([key, val]) => ({ ['data-' + key]: val })))
   return <BackgroundImage component={component} {...dataset} src={src} ref={ref} alt={title} />
 }
 
-export const LazyImg = ({ data_image, component, title = 'image' }) => {
-  const [ref, src] = useImg()
+export const LazyImg = ({ data_image, component, title = 'image', adjustMasonry = null }) => {
+  const [ref, src] = useImg(true, adjustMasonry)
   const dataset = Object.assign({}, ...Object.entries(data_image).map(([key, val]) => ({ ['data-' + key]: val })))
   return <Image component={component} {...dataset} src={src} ref={ref} alt={title} />
 }
