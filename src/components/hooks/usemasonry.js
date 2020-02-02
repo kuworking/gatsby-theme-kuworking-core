@@ -1,12 +1,11 @@
-// v2020.01.03
+// v2020.02.02
 
-import React, { useRef, useLayoutEffect, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 const wait = ms => new Promise((res, rej) => setTimeout(() => res('timed'), ms))
 
 export const useMasonry = (row_unit, grid_gap) => {
   const refs = useRef([])
-  const [imageLoaded, setImageLoader] = useState(0)
   const [gridAutoRows, setGridAutoRows] = useState(200) // starting grid-auto-rows
 
   let signals = 0

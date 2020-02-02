@@ -24,7 +24,7 @@ const Observer = (el, setBackImg, adjustMasonry = null) => {
               ? lazyImage.dataset['1800px'] || lazyImage.dataset.standard
               : lazyImage.dataset.standard
           )
-          adjustMasonry()
+          adjustMasonry && adjustMasonry()
           observer.unobserve(lazyImage)
         }
       })
