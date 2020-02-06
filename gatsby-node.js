@@ -24,6 +24,7 @@ exports.onCreatePage = async ({ page, actions }, themeOptions) => {
     path: urlResolve(replacePath(basePath), replacePath(page.path)),
     context: {
       basePath: basePath,
+      ...page.context,
     },
   })
 }

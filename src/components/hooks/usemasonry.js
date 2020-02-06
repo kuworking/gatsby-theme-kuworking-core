@@ -1,10 +1,10 @@
-// v2020.02.02
+// v2020.02.03
 
 import React, { useRef, useState, useEffect } from 'react'
 
 const wait = ms => new Promise((res, rej) => setTimeout(() => res('timed'), ms))
 
-export const useMasonry = (row_unit, grid_gap) => {
+export const useMasonry = (row_unit, grid_gap, [repaint, setRepaint]) => {
   const refs = useRef([])
   const [gridAutoRows, setGridAutoRows] = useState(200) // starting grid-auto-rows
 
@@ -16,7 +16,10 @@ export const useMasonry = (row_unit, grid_gap) => {
     if (signals !== last_signal) return // means another instance has added a signal, so I discard this one
     if (stillMounted && !stillMounted.value) return
 
-    // I change here the row gap since otherwise all images are lazy-loaded because all the grid is in the viewport with such a narrow row gap
+    // I change here the row gap since otherwise, with a gap of 20 (or so) and without the images (still loading), 
+    // ... all images would trigger the intersection and would be loaded
+    // But, once changed, it is changed with the same number so it does not repaint
+    // so I make sure of the repaint with the setRepaint
     setGridAutoRows(row_unit)
 
     refs.current.forEach(el => {
@@ -30,6 +33,7 @@ export const useMasonry = (row_unit, grid_gap) => {
   useEffect(() => {
     const stillMounted = { value: true }
     adjustMasonry(stillMounted)
+    setRepaint(!repaint)
 
     const adjustMasonryEvent = () => adjustMasonry(stillMounted)
     window.addEventListener('resize', adjustMasonryEvent)

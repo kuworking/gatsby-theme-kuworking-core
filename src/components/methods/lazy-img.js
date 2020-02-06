@@ -1,4 +1,4 @@
-// v2020.01.03
+// v2020.02.03
 
 import React, { useState, useRef, useEffect } from 'react'
 import styled from '@emotion/styled'
@@ -24,7 +24,11 @@ const Observer = (el, setBackImg, adjustMasonry = null) => {
               ? lazyImage.dataset['1800px'] || lazyImage.dataset.standard
               : lazyImage.dataset.standard
           )
-          adjustMasonry && adjustMasonry()
+          if (adjustMasonry) {
+            adjustMasonry()
+            // just in case, sometimes (cannot reproduce!) the function seems not to be executed
+            setTimeout(adjustMasonry, 2000)
+          }
           observer.unobserve(lazyImage)
         }
       })
