@@ -1,7 +1,9 @@
-// v2020.02.03
+// v2020.02.09
 
 import React, { useState, useRef, useEffect } from 'react'
 import styled from '@emotion/styled'
+
+const wait = ms => new Promise((res, rej) => setTimeout(() => res('timed'), ms))
 
 const Observer = (el, setBackImg, adjustMasonry = null) => {
   if ('IntersectionObserver' in window && el) {
@@ -28,6 +30,16 @@ const Observer = (el, setBackImg, adjustMasonry = null) => {
             adjustMasonry()
             // just in case, sometimes (cannot reproduce!) the function seems not to be executed
             setTimeout(adjustMasonry, 2000)
+            const op = async () => {
+              if (!entry.target.style.opacity) {
+                entry.target.style.opacity = 0
+              }
+              await wait(500)
+              entry.target.style.transition = 'opacity 0.5s ease-in'
+              entry.target.style.opacity = 1
+            }
+
+            op()
           }
           observer.unobserve(lazyImage)
         }
@@ -115,4 +127,6 @@ const BackgroundImage = styled.div`
 
 const Image = styled.img`
   ${props => props.component}
+  transition: opacity 0.5s ease-in;
+  opacity: 0.5;
 `
