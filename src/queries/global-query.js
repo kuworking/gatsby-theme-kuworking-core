@@ -18,6 +18,7 @@ module.exports.data = `{
           node {
             id
             slug
+            name
             title
             date(formatString: "MMMM DD, YYYY")
             tags
@@ -38,10 +39,7 @@ module.exports.data = `{
           }
         }
       }
-      wallpapers: allFile
-      (
-        filter: { sourceInstanceName: { eq: "content/wallpapers" } }
-      )
+      wallpapers: allFile(filter: { sourceInstanceName: { eq: "content/wallpapers" } })
       {
         edges {
           node {
@@ -57,10 +55,17 @@ module.exports.data = `{
           }
         }
       }
-      post_images: allFile
-      (
-        filter: { sourceInstanceName: { regex: "/content/.*/images/" } }
-      )
+      post_images: allFile(filter: { sourceInstanceName: { regex: "/content/.*/images/" } })
+      {
+        edges {
+          node {
+            publicURL
+            name
+            relativeDirectory
+          }
+        }
+      }
+      grid_images: allFile(filter: {sourceInstanceName: {regex: "/content/.*/images/"}, relativeDirectory: {eq: ""}})
       {
         edges {
           node {

@@ -96,6 +96,7 @@ exports.onCreateNode = async ({ node, actions, getNode, createNodeId }, themeOpt
       title: node.frontmatter.title,
       tags,
       slug,
+      name: slug.charAt(0) === '/' ? slug.substring(1) : slug,
       date: node.frontmatter.date,
       keywords: node.frontmatter.keywords || [],
       type: node.frontmatter.type || '',
@@ -147,19 +148,21 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   const posts = result.data.raw_posts.edges
   const wallpapers = result.data.wallpapers.edges
   const post_images = result.data.post_images.edges
+  const grid_images = result.data.grid_images.edges
 
   // Create pages for each post
   posts.forEach(({ node: post }, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1]
     const next = index === 0 ? null : posts[index - 1]
-    const { slug } = post
+    const { slug, name } = post
+
     createPage({
       path: slug,
       component: PostTemplate,
       context: {
         raw_posts: posts,
         wallpapers: wallpapers,
-        post_images: post_images,
+        post_images: post_images.filter(({ node: { relativeDirectory } }) => relativeDirectory === name),
         basePath: basePath,
         pre_path: basePath,
         id: post.id,
@@ -182,7 +185,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       context: {
         raw_posts: posts,
         wallpapers: wallpapers,
-        post_images: post_images,
+        post_images: grid_images,
         basePath: basePath,
         pre_path: basePath,
         limit: postsPerPage,
@@ -226,7 +229,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         context: {
           raw_posts: posts,
           wallpapers: wallpapers,
-          post_images: post_images,
+          post_images: grid_images,
           basePath: basePath,
           pre_path: `${basePath}${tagsPath}/${tag}`,
           limit: postsPerPage,
