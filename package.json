@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-kuworking-core",
-  "version": "0.1.47",
+  "version": "0.1.49",
   "description": "gatsby-theme-kuworking-core",
   "main": "index.js",
   "author": "kuworking.com",
@@ -61,6 +61,7 @@
     "build": "gatsby build",
     "serve": "gatsby clean && gatsby build && gatsby serve",
     "net": "gatsby develop -H 192.168.1.100",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "bump": "."
   }
 }

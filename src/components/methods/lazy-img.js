@@ -128,5 +128,5 @@ const BackgroundImage = styled.div`
 const Image = styled.img`
   ${props => props.component}
   transition: opacity 0.5s ease-in;
-  opacity: 0.5;
+  opacity: 1;
 `
