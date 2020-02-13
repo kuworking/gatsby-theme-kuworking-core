@@ -3,23 +3,32 @@ import { get_image_versions, post_structure, get_last_slug } from './methods-tem
 import { Structure } from '../components/structure'
 
 export default ({ location, pageContext, data }) => {
-  const { post_images } = data
+  const {
+    tag,
+    global_tags,
+    pre_path,
+    basePath,
+    num_of_pages,
+    current_page,
+    raw_posts,
+    wallpapers,
+    post_images,
+  } = pageContext
+
   const images = {
-    images: post_images.edges || '',
+    images: post_images || '',
   }
 
   const allPosts = data.allTagPosts ? data.allTagPosts.edges : data.allBlogPost.edges
   const posts = []
 
   allPosts.forEach(({ node: post }, index) => {
-    const image = get_image_versions(images.images, get_last_slug(post.slug))
+    const image = get_image_versions(post_images, get_last_slug(post.slug))
     posts.push({
       ...post_structure(post, image),
       key: 'post_' + index,
     })
   })
-
-  const { tag, global_tags, pre_path, basePath, num_of_pages, current_page, all_posts } = pageContext
 
   return (
     <Structure
@@ -27,7 +36,7 @@ export default ({ location, pageContext, data }) => {
       blogGrid={{
         images: images,
         posts: posts,
-        all_posts: all_posts,
+        raw_posts: raw_posts,
         pagination: {
           basePath,
           pre_path,

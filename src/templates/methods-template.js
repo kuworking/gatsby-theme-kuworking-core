@@ -46,7 +46,7 @@ export const get_posts_with_the_same_tags = (post, allPosts, images) => {
   let posts_with_the_same_tags = []
 
   post.tags.forEach(tag => {
-    const these_posts = [...allPosts.edges.filter(el => el.node.tags.includes(tag))]
+    const these_posts = [...allPosts.filter(el => el.node.tags.includes(tag))]
     fill_related_posts(post, these_posts, images)
     posts_with_the_same_tags.push(...these_posts)
   })

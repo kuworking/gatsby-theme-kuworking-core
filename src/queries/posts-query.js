@@ -49,15 +49,6 @@ export const query = graphql`
         }
       }
     }
-    post_images: allFile(filter: { sourceInstanceName: { regex: "/content/.*/images/" } }) {
-      edges {
-        node {
-          publicURL
-          name
-          relativeDirectory
-        }
-      }
-    }
   }
 `
 

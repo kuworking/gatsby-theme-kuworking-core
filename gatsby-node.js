@@ -127,6 +127,7 @@ exports.onCreateNode = async ({ node, actions, getNode, createNodeId }, themeOpt
 // These templates are simply data-fetching wrappers that import components (and allow shadowing)
 const PostTemplate = require.resolve(`./src/queries/post-query`)
 const PostsTemplate = require.resolve(`./src/queries/posts-query`)
+const GlobalQuery = require(`./src/queries/global-query`)
 
 exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   const { createPage } = actions
@@ -139,25 +140,13 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     do_not_create_tag_page_for,
   } = withDefaults(themeOptions)
 
-  const result = await graphql(`
-    {
-      allMdxBlogPost(sort: { fields: [date, title], order: DESC }, limit: 1000) {
-        edges {
-          node {
-            id
-            slug
-            tags
-            type
-          }
-        }
-      }
-    }
-  `)
-
+  const result = await graphql(GlobalQuery.data)
   if (result.errors) reporter.panic(result.errors)
 
   // Create pages.
-  const posts = result.data.allMdxBlogPost.edges
+  const posts = result.data.raw_posts.edges
+  const wallpapers = result.data.wallpapers.edges
+  const post_images = result.data.post_images.edges
 
   // Create pages for each post
   posts.forEach(({ node: post }, index) => {
@@ -168,6 +157,9 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       path: slug,
       component: PostTemplate,
       context: {
+        raw_posts: posts,
+        wallpapers: wallpapers,
+        post_images: post_images,
         basePath: basePath,
         pre_path: basePath,
         id: post.id,
@@ -188,6 +180,9 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       path: index === 0 ? basePath : `${basePath}${index + 1}`,
       component: PostsTemplate,
       context: {
+        raw_posts: posts,
+        wallpapers: wallpapers,
+        post_images: post_images,
         basePath: basePath,
         pre_path: basePath,
         limit: postsPerPage,
@@ -196,7 +191,6 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         current_page: index + 1,
         this_is_a_tag_search: false,
         excluded_type: do_not_count_type_for_pagination || [],
-        all_posts: posts,
       },
     })
   })
@@ -230,6 +224,9 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         path: index === 0 ? `${basePath}${tagsPath}/${tag}/` : `${basePath}${tagsPath}/${tag}/${index + 1}`,
         component: PostsTemplate,
         context: {
+          raw_posts: posts,
+          wallpapers: wallpapers,
+          post_images: post_images,
           basePath: basePath,
           pre_path: `${basePath}${tagsPath}/${tag}`,
           limit: postsPerPage,

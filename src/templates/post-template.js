@@ -10,20 +10,19 @@ import {
 import { Structure } from '../components/structure'
 
 export default ({ location: { href }, pageContext, data }) => {
-  const { allPosts, current: post, post_images, wallpapers } = data
+  const { raw_posts, wallpapers, post_images, pre_path, basePath } = pageContext
+  const { current: post } = data
   const pageName = get_last_slug(post.slug)
 
-  const image_versions = get_image_versions(post_images.edges, pageName)
+  const image_versions = get_image_versions(post_images, pageName)
   const images = {
     image: image_versions.standard,
     image_versions: image_versions,
-    images: post_images.edges || '',
-    wallpapers: wallpapers.edges || '',
+    images: post_images || '',
+    wallpapers: wallpapers || '',
   }
 
-  const { pre_path, basePath } = pageContext
-  let globalPosts = [...allPosts.edges]
-  fill_related_posts(post, globalPosts, images)
+  fill_related_posts(post, raw_posts, images)
 
   return (
     <Structure
@@ -36,8 +35,8 @@ export default ({ location: { href }, pageContext, data }) => {
         post: post_structure(post, images.image_versions),
         structure: {
           post_related_images: get_folder_image(images.images, pageName),
-          tags_related_posts: get_posts_with_the_same_tags(post, allPosts, images),
-          posts: globalPosts,
+          tags_related_posts: get_posts_with_the_same_tags(post, raw_posts, images),
+          posts: raw_posts,
         },
       }}
     />
