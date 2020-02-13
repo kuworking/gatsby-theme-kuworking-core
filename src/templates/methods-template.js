@@ -30,7 +30,7 @@ export const fill_related_posts = (post, posts, images) => {
 
   posts.forEach(({ node: this_post }, i) => {
     this_post.name = this_post.slug.replace(/^\//, '')
-    const image = get_image_versions(images.images, get_last_slug(this_post.slug))
+    const image = get_image_versions(images.grid_images, get_last_slug(this_post.slug))
     this_post.full_image = image && image.standard
     this_post.image_versions = image || ''
     //    this_post.fluid_image = image && image.node.childImageSharp && image.node.childImageSharp.fluid
@@ -55,7 +55,7 @@ export const get_posts_with_the_same_tags = (post, allPosts, images) => {
   return posts_with_the_same_tags
 }
 
-export const post_structure = (post, image) => ({
+export const post_structure = (post, image, grid_image) => ({
   date: post.date,
   tags: post.tags,
   timeToRead: post.parent ? post.parent.timeToRead : '',
@@ -72,6 +72,9 @@ export const post_structure = (post, image) => ({
   name: post.slug.replace(/^\//, ''), // needed for the 1st slash, the last one is already removed
   full_image: image && image.standard,
   image_versions: image || '',
+  grid_full_image: grid_image && grid_image.standard,
+  grid_image_versions: grid_image || '',
+
   //  fluid_image: image && image.node.childImageSharp && image.node.childImageSharp.fluid,
   //  fixed_image: image && image.node.childImageSharp && image.node.childImageSharp.fixed,
 })

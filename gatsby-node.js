@@ -163,6 +163,8 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         raw_posts: posts,
         wallpapers: wallpapers,
         post_images: post_images.filter(({ node: { relativeDirectory } }) => relativeDirectory === name),
+        grid_images: grid_images,
+        //    grid_images2: grid_images.filter(({ node: { name: imageName } }) => name === imageName.split('---')[0]),
         basePath: basePath,
         pre_path: basePath,
         id: post.id,
