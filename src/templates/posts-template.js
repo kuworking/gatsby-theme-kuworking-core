@@ -37,7 +37,7 @@ export default ({ location: { href }, pageContext, data }) => {
         images: images,
         posts: posts,
         raw_posts: raw_posts,
-        canonical: href.split('?')[0], // remove the ?whatever part
+        canonical: href && href.split('?')[0], // remove the `?whatever` part, href not present in build
         pagination: {
           basePath,
           pre_path,

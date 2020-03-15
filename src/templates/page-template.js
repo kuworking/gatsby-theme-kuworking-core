@@ -15,7 +15,7 @@ export const Page = ({ type = 'page', page, ...props }) => {
     <Structure
       type={type}
       blogPage={{
-        canonical: canonical || window.location.href.split('?')[0], // remove the ?whatever part
+        canonical: canonical || (typeof window !== 'undefined' && window.location.href.split('?')[0]), // remove the ?whatever part
         images: images,
         page,
         ...props,
