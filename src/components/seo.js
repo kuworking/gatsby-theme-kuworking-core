@@ -38,7 +38,10 @@ export const SEO = ({
 
   // const image = (post && (Config.url + post.full_image).replace(/(?<!:)\/\//, '/')) || '' // negative lookbehing is only Chrome-supported as today
   const image = (page && imagePage) || (post && imagePost) || (imageGrid && imageGrid) || '' // alternative
-  const canonical_url = canonical || Config.url
+
+  // canonical is the url as it, unless a specific url is provided (pointing to duplicated content in another site, likely)
+  const canonical_url = canonical || Config.url // there are no expected cases where there's no canonical prop
+
   const robots = (page && page.robots) || 'index, follow'
 
   const content_type_og = type === 'mdx' ? 'article' : type === 'page' ? 'website' : 'website'

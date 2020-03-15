@@ -32,7 +32,7 @@ export default ({ location: { href }, pageContext, data }) => {
     <Structure
       type="mdx"
       blogPost={{
-        canonical: href,
+        canonical: href.split('?')[0], // remove the ?whatever part
         basePath,
         pre_path,
         images: images,

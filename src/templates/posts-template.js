@@ -2,7 +2,7 @@ import React from 'react'
 import { get_image_versions, post_structure, get_last_slug } from './methods-template'
 import { Structure } from '../components/structure'
 
-export default ({ location, pageContext, data }) => {
+export default ({ location: { href }, pageContext, data }) => {
   const {
     tag,
     global_tags,
@@ -37,6 +37,7 @@ export default ({ location, pageContext, data }) => {
         images: images,
         posts: posts,
         raw_posts: raw_posts,
+        canonical: href.split('?')[0], // remove the ?whatever part
         pagination: {
           basePath,
           pre_path,
