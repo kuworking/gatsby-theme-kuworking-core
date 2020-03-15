@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Styled } from 'theme-ui'
 
 import { SEO } from './seo'
 import { Switch } from './elements/switch'
@@ -25,19 +24,19 @@ export const Structure = ({ type, blogGrid, blogPost, blogPage }) => {
 
         {(type === 'grid' && (
           <Grid>
-            <Styled.h1>GRID</Styled.h1>
+            <h1>GRID</h1>
             <Lorem />
           </Grid>
         )) ||
           (type === 'mdx' && (
             <Post>
-              <Styled.h1>POST</Styled.h1>
+              <h1>POST</h1>
               <Lorem />
             </Post>
           )) ||
           ((type === 'page' || type === 'tool') && (
             <Page>
-              <Styled.h1>PAGE</Styled.h1>
+              <h1>PAGE</h1>
               {children}
               <Lorem />
             </Page>
@@ -78,32 +77,31 @@ const Page = styled.div`
 
 const Lorem = () => (
   <>
-    <Styled.h1>HTML Ipsum Presents</Styled.h1>
-    <Styled.p>
-      <Styled.strong>Pellentesque habitant morbi tristique</Styled.strong> senectus et netus et malesuada fames ac
-      turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
-      amet quam egestas semper. <Styled.em>Aenean ultricies mi vitae est.</Styled.em> Mauris placerat eleifend leo.
-      Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,{' '}
-      <Styled.code>commodo vitae</Styled.code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-      condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.{' '}
-      <Styled.a href="#">Donec non enim</Styled.a> in turpis pulvinar facilisis. Ut felis.
-    </Styled.p>
-    <Styled.h2>Header Level 2</Styled.h2>
-    <Styled.ol>
-      <Styled.li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</Styled.li>
-      <Styled.li>Aliquam tincidunt mauris eu risus.</Styled.li>
-    </Styled.ol>
-    <Styled.blockquote>
-      <Styled.p>
+    <h1>HTML Ipsum Presents</h1>
+    <p>
+      <strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas.
+      Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+      egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et
+      sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet,
+      wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac
+      dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.
+    </p>
+    <h2>Header Level 2</h2>
+    <ol>
+      <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+      <li>Aliquam tincidunt mauris eu risus.</li>
+    </ol>
+    <blockquote>
+      <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a
         est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est
         malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
-      </Styled.p>
-    </Styled.blockquote>
-    <Styled.h3>Header Level 3</Styled.h3>
-    <Styled.ul>
-      <Styled.li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</Styled.li>
-      <Styled.li>Aliquam tincidunt mauris eu risus.</Styled.li>
-    </Styled.ul>
+      </p>
+    </blockquote>
+    <h3>Header Level 3</h3>
+    <ul>
+      <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+      <li>Aliquam tincidunt mauris eu risus.</li>
+    </ul>
   </>
 )
