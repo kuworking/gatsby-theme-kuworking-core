@@ -28,9 +28,9 @@ export const Switch = ({ Day, Night, styles }) => {
     )
 
   return (
-    <Square day={colorMode === 'light'} onClick={toggleColorMode} {...styles}>
-      <div>
-        <div>
+    <Square day={colorMode === 'light'} onClick={toggleColorMode} {...styles} id="switch_DayNight_1">
+      <div id="switch_DayNight_2">
+        <div id="switch_DayNight_3">
           <Icons />
         </div>
       </div>

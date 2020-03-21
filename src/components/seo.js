@@ -7,13 +7,18 @@ export const SEO = ({
   type,
   schemaType = 'WebPage',
   itemList = [],
+  mainEntityOfPage,
+  fb_app_id = null,
   wholeSchema = null,
   blogGrid,
   blogPost,
   blogPage,
   extra = null,
 }) => {
-  const { canonical } = blogGrid || blogPost || blogPage
+  const { thePath } = blogGrid || blogPost || blogPage
+
+  const canonical = Config.url + thePath
+
   const { page, image: imagePage } = blogPage || ''
   const { tags, image: imageGrid } = blogGrid || ''
   const { post, image: imagePost } = blogPost || ''
@@ -39,9 +44,6 @@ export const SEO = ({
   // const image = (post && (Config.url + post.full_image).replace(/(?<!:)\/\//, '/')) || '' // negative lookbehing is only Chrome-supported as today
   const image = (page && imagePage) || (post && imagePost) || (imageGrid && imageGrid) || '' // alternative
 
-  // canonical is the url as it, unless a specific url is provided (pointing to duplicated content in another site, likely)
-  const canonical_url = canonical || Config.url // there are no expected cases where there's no canonical prop
-
   const robots = (page && page.robots) || 'index, follow'
 
   const content_type_og = type === 'mdx' ? 'article' : type === 'page' ? 'website' : 'website'
@@ -50,7 +52,7 @@ export const SEO = ({
     {
       '@context': 'https://schema.org',
       '@type': schemaType,
-      url: canonical_url,
+      url: canonical,
       name: title,
       headline: title,
       description: description,
@@ -65,12 +67,14 @@ export const SEO = ({
         name: Config.user,
       },
       mainEntityOfPage: {
-        '@type': schemaType,
-        '@id': canonical_url,
+        ...mainEntityOfPage,
+        '@id': canonical,
       },
       itemListElement: itemList,
     },
   ]
+
+  const fb = fb_app_id ? <meta property="fb:app_id" content={fb_app_id} /> : ''
 
   return (
     <Helmet defer={false}>
@@ -78,7 +82,7 @@ export const SEO = ({
       <title>{title}</title>
 
       {/* Canonical */}
-      <link rel="canonical" href={canonical_url} key={canonical_url} />
+      <link rel="canonical" href={canonical} key={canonical} />
 
       {/* General tags */}
       <meta name="viewport" content={'width=device-width, initial-scale=1'} />
@@ -99,7 +103,7 @@ export const SEO = ({
       <meta property="og:description" content={description} />
       <meta property="og:type" content={content_type_og} />
       <meta property="og:image" content={image} />
-      <meta property="og:url" content={canonical_url} />
+      <meta property="og:url" content={canonical} />
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -107,8 +111,11 @@ export const SEO = ({
       <meta name="twitter:site" content={Config.social.twitter} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:domain" content={canonical_url} />
+      <meta name="twitter:domain" content={canonical} />
       <meta name="twitter:image" content={image} />
+
+      {/* FB app id */}
+      {fb}
     </Helmet>
   )
 }

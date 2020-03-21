@@ -2,12 +2,13 @@ import React from 'react'
 import { get_image_versions, post_structure, get_last_slug } from './methods-template'
 import { Structure } from '../components/structure'
 
-export default ({ location: { href }, pageContext, data }) => {
+export default ({ pageContext, data }) => {
   const {
     tag,
     global_tags,
     pre_path,
     basePath,
+    thePath,
     num_of_pages,
     current_page,
     raw_posts,
@@ -37,7 +38,7 @@ export default ({ location: { href }, pageContext, data }) => {
         images: images,
         posts: posts,
         raw_posts: raw_posts,
-        canonical: href && href.split('?')[0], // remove the `?whatever` part, href not present in build
+        thePath: thePath,
         pagination: {
           basePath,
           pre_path,

@@ -6,7 +6,7 @@ import { get_last_slug } from './methods-template'
 
 export const Page = ({ type = 'page', page, ...props }) => {
   const { wallpapers } = useQuery()
-  const { canonical } = page
+  const { thePath, basePath } = page
   const images = {
     wallpapers: wallpapers.edges || '',
   }
@@ -15,7 +15,8 @@ export const Page = ({ type = 'page', page, ...props }) => {
     <Structure
       type={type}
       blogPage={{
-        canonical: canonical || (typeof window !== 'undefined' && window.location.href.split('?')[0]), // remove the ?whatever part
+        thePath: thePath,
+        basePath: basePath,
         images: images,
         page,
         ...props,

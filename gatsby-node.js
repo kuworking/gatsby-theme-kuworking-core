@@ -19,10 +19,12 @@ exports.onCreatePage = async ({ page, actions }, themeOptions) => {
   if (page.path.includes('404')) return
   deletePage(page)
 
+  const thePath = urlResolve(replacePath(basePath), replacePath(page.path))
   return createPage({
     ...page,
-    path: urlResolve(replacePath(basePath), replacePath(page.path)),
+    path: thePath,
     context: {
+      thePath: thePath,
       basePath: basePath,
       ...page.context,
     },
@@ -160,6 +162,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       path: slug,
       component: PostTemplate,
       context: {
+        thePath: slug,
         raw_posts: posts,
         wallpapers: wallpapers,
         post_images: post_images.filter(({ node: { relativeDirectory } }) => relativeDirectory === name),
@@ -225,10 +228,12 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     let numPages_perTag = Math.ceil(counting_by_tags[tag] / postsPerPage)
 
     Array.from({ length: numPages_perTag }).forEach((_, index) => {
+      const thePath = index === 0 ? `${basePath}${tagsPath}/${tag}/` : `${basePath}${tagsPath}/${tag}/${index + 1}`
       createPage({
-        path: index === 0 ? `${basePath}${tagsPath}/${tag}/` : `${basePath}${tagsPath}/${tag}/${index + 1}`,
+        path: thePath,
         component: PostsTemplate,
         context: {
+          thePath: thePath,
           raw_posts: posts,
           wallpapers: wallpapers,
           post_images: grid_images,

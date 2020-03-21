@@ -9,8 +9,8 @@ import {
 } from './methods-template'
 import { Structure } from '../components/structure'
 
-export default ({ location: { href }, pageContext, data }) => {
-  const { raw_posts, wallpapers, post_images, grid_images, pre_path, basePath } = pageContext
+export default ({ pageContext, data }) => {
+  const { raw_posts, wallpapers, post_images, grid_images, pre_path, basePath, thePath } = pageContext
   const { current: post } = data
   const pageName = get_last_slug(post.slug)
 
@@ -32,7 +32,7 @@ export default ({ location: { href }, pageContext, data }) => {
     <Structure
       type="mdx"
       blogPost={{
-        canonical: href && href.split('?')[0], // remove the `?whatever` part, href not present in build
+        thePath: thePath,
         basePath,
         pre_path,
         images: images,
