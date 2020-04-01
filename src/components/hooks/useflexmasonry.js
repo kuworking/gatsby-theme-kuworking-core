@@ -76,6 +76,7 @@ export const useFlexMasonry = (column_width, num_items) => {
 
     window.addEventListener('resize', createStructure)
     return () => window.removeEventListener('resize', createStructure)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const assignRef = r => {

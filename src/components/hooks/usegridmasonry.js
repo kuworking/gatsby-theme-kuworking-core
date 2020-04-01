@@ -38,6 +38,7 @@ export const useGridMasonry = (row_unit, grid_gap) => {
     updateGrid()
     window.addEventListener('resize', updateGrid)
     return () => window.removeEventListener('resize', updateGrid)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const assignRef = r => r && (refs.current.includes(r) || refs.current.push(r))

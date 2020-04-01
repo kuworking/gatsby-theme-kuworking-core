@@ -188,6 +188,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       path: index === 0 ? basePath : `${basePath}${index + 1}`,
       component: PostsTemplate,
       context: {
+        thePath: '',
         raw_posts: posts,
         wallpapers: wallpapers,
         post_images: grid_images,

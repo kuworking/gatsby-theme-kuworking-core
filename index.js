@@ -17,7 +17,7 @@ export {
   get_response,
   get_request,
 } from './src/components/methods/methods'
-export { LazyBackgroundImg, LazyImg, Img } from './src/components/methods/lazy-img'
+export { BImg, Img } from './src/components/methods/image'
 export { Highlight, apply_highlight } from './src/components/methods/highlight'
 export { Prism } from './src/components/methods/prism'
 export { CodeLink, useCodePenScript, CodePen } from './src/components/methods/codepen'
@@ -27,6 +27,9 @@ export { useCss } from './src/components/hooks/usecss'
 export { useGridMasonry } from './src/components/hooks/usegridmasonry'
 export { useFlexMasonry } from './src/components/hooks/useflexmasonry'
 export { progress } from './src/components/hooks/domprogress'
+export { useLocalStorage } from './src/components/hooks/uselocalstorage'
+export { useWindowResize } from './src/components/hooks/usewindowresize'
+
 
 export { Pagination } from './src/components/pagination'
 export { SEO } from './src/components/seo'
