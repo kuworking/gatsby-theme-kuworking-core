@@ -12,7 +12,7 @@ export default ({ pageContext, data }) => {
     num_of_pages,
     current_page,
     raw_posts,
-    wallpapers,
+    wallpapers, // eslint-disable-line no-unused-vars
     post_images,
   } = pageContext
 

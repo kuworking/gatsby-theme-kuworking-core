@@ -115,10 +115,7 @@ exports.onCreateNode = async ({ node, actions, getNode, createNodeId }, themeOpt
       children: [],
       internal: {
         type: `MdxBlogPost`,
-        contentDigest: crypto
-          .createHash(`md5`)
-          .update(JSON.stringify(fieldData))
-          .digest(`hex`),
+        contentDigest: crypto.createHash(`md5`).update(JSON.stringify(fieldData)).digest(`hex`),
         content: JSON.stringify(fieldData),
         description: `Mdx implementation of the BlogPost interface`,
       },

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
-
-import { SEO } from './seo'
-import { Switch } from './elements/switch'
+import { useColorMode } from 'theme-ui'
+import { modes } from '../gatsby-plugin-theme-ui/index'
+import { SEO, Switch } from 'gatsby-theme-kuworking-core'
 
 const grid_maxwidth = '1000px'
 const post_maxwidth = '800px'
@@ -17,10 +17,19 @@ export const Structure = ({ type, blogGrid, blogPost, blogPage }) => {
 
   return (
     <Main main_background={main_background}>
-      <SEO type={type} blogGrid={blogGrid} blogPost={blogPost} blogPage={blogPage} />
+      <Helmet defer={false}>
+        <SEO
+          type={type}
+          blogGrid={blogGrid}
+          blogPost={blogPost}
+          blogPage={blogPage}
+          config={config}
+          seotext={seoText}
+        />
+      </Helmet>
 
       <Container maxWidth={maxWidth}>
-        <Switch aria-label="Toggle color modes" />
+        <Switch aria-label="Toggle color modes" modes={modes} useColorMode={useColorMode} />
 
         {(type === 'grid' && (
           <Grid>

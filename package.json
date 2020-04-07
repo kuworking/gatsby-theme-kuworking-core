@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-kuworking-core",
-  "version": "0.1.67",
+  "version": "0.1.83",
   "description": "gatsby-theme-kuworking-core",
   "main": "index.js",
   "author": "kuworking.com",
@@ -11,13 +11,13 @@
   },
   "peerDependencies": {
     "@mdx-js/react": "1.5.8",
-    "gatsby": "2.20.9",
+    "gatsby": "2.20.5",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
   "devDependencies": {
     "@mdx-js/react": "1.5.8",
-    "gatsby": "2.20.9",
+    "gatsby": "2.20.5",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
@@ -43,16 +43,14 @@
     "gatsby-remark-copy-linked-files": "2.2.1",
     "gatsby-remark-images": "3.2.1",
     "gatsby-source-filesystem": "2.2.2",
+    "gatsby-theme-kuworking-methods": "^0.1.1",
     "gatsby-transformer-sharp": "2.4.3",
-    "react-cookie-consent": "3.0.0",
-    "react-helmet": "5.2.1",
-    "react-intersection-observer": "8.26.1",
-    "react-share": "4.1.0",
     "remark-slug": "6.0.0",
     "theme-ui": "0.3.1"
   },
   "resolutions": {
-    "**/@emotion/core": "10.0.27",
+    "**/gatsby": "2.20.5",
+    "**/@emotion/core": "10.0.28",
     "**/@emotion/styled": "10.0.27",
     "**/@mdx-js/mdx": "1.5.8",
     "**/@mdx-js/react": "1.5.8",
@@ -65,5 +63,6 @@
     "net": "gatsby develop -H 192.168.1.100",
     "clean": "gatsby clean",
     "bump": "."
-  }
+  },
+  "gitHead": "0b3b18d3c8a782b38d638b71913282e0a3ad2fad"
 }
