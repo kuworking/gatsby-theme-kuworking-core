@@ -1,19 +1,28 @@
 import React from 'react'
-import {
-  get_image_versions,
-  get_folder_image,
-  get_posts_with_the_same_tags,
-  fill_related_posts,
-  post_structure,
-  get_last_slug,
-} from './methods-template'
-import { Structure } from '../components/structure'
+import { StructurePost } from '../components/structure-post'
 
 export default ({ pageContext, data }) => {
-  const { raw_posts, wallpapers, post_images, grid_images, pre_path, basePath, thePath } = pageContext
-  const { current: post } = data
-  const pageName = get_last_slug(post.slug)
+  const { thePath, post, post_images, related_posts, wallpapers, basePath, pre_path } = pageContext
+  post.content = data.current.parent.body
 
+  return (
+    <StructurePost
+      type="mdx"
+      blogPost={{
+        thePath,
+        basePath,
+        pre_path,
+        post_images,
+        post,
+        related_posts,
+        wallpapers,
+      }}
+    />
+  )
+}
+
+
+  /*
   const image_versions = get_image_versions(post_images, pageName)
   const grid_image_versions = get_image_versions(grid_images, pageName)
   const images = {
@@ -27,22 +36,4 @@ export default ({ pageContext, data }) => {
   }
 
   fill_related_posts(post, raw_posts, images)
-
-  return (
-    <Structure
-      type="mdx"
-      blogPost={{
-        thePath: thePath,
-        basePath,
-        pre_path,
-        images: images,
-        post: post_structure(post, images.image_versions, images.grid_image_versions),
-        structure: {
-          post_related_images: get_folder_image(images.images, pageName),
-          tags_related_posts: get_posts_with_the_same_tags(post, raw_posts, images),
-          posts: raw_posts,
-        },
-      }}
-    />
-  )
-}
+*/

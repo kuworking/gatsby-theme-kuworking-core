@@ -6,7 +6,7 @@ Core theme for kuworking themes, which you can find [here](https://www.kuworking
 
 ## 📝 Description
 
-Core theme used as a common boilerplate for other kuworking themes
+Core theme consumed as a base theme for other kuworking themes
 
 ## 🚀 Characteristics
 
@@ -14,22 +14,30 @@ The CORE theme is responsible of
 
 - Taking care of MDX processing
 - Pages, posts, tag categories
-- Implementing theme-ui and give `Styled.root` context to all (non-mdx) pages
+- Implementing theme-ui
 - Implementing robots.txt, SEO, RSS feeds, sitemap, google TAG manager, manifest, PWA and image processing (when applies)
-- Providing components for Disqus, Day/Night switch mode
-- With hooks to insert scripts and css files
-- Components to insert Google Map, Instagram, Pinterest, Youtube
-- Components for sharing content to Twitter, Pinterest and Facebook
-- Components for codepen, highlight.js and prism
-- Components for lazy loading of images
-
-* This does NOT uses Gatsby image processing libraries since I wasn't getting consistent results, and also to decouple the image processing from the online build step (very time consuming)
+- Providing components for Day/Night switch mode, react-spring elements, custom hooks, custom lazy-loading of images, different providers, MailChimp, Disqus
 
 ## 🔥 How to Use
 
-This theme on its own provides very little functionality and it is meant to be used as a dependency for other [kuworking themes](https://www.kuworking.com/themes)
+This theme is meant to be consumed by other themes [kuworking themes](https://www.kuworking.com/themes)
 
-## 🏙 The Site
+## 🧡 Dependencies
+
+- gatsby
+- @emotion
+- @mdx-js
+- gatsby-plugin-feed
+- gatsby-plugin-google-tagmanager
+- gatsby-plugin-manifest
+- gatsby-plugin-offline
+- gatsby-plugin-react-helmet
+- gatsby-plugin-robots-txt": "1.5.0",
+- gatsby-plugin-sitemap
+- gatsby-plugin-theme-ui": "0.3.0",
+- gatsby-theme-kuworking-methods
+
+## 🖖 The Site
 
 These themes are hosted in [www.kuworking.com](https://www.kuworking.com), a site about GatsbyJS and WordPress (in Spanish 🌞)
 
@@ -37,4 +45,4 @@ Feel free to come anytime you want 🙋‍♂️
 
 ## 📻 Newsletter
 
-And if you want to suscribe to my newsletter (in Spanish), you are very welcomed, you can find the form [here](https://www.kuworking.com/list)
+If you want to suscribe to my newsletter (in Spanish), you are very welcomed, you can find the form [here](https://www.kuworking.com/list)

@@ -7,12 +7,13 @@ const GatsbyImageSharpFluid_noBase64 = `
   sizes
 `
 
-module.exports.data = `{
-      raw_posts: allMdxBlogPost
+module.exports.data = `query forGatsbyNode ($wallpapers: String!, $posts: String!, $images: String!){
+    raw_posts: allMdxBlogPost
       (
        sort: { fields: [date, title], order: DESC }, 
-       limit: 500
-      )
+       limit: 1000,
+       filter: { sourceInstanceName: { eq: $posts } }
+       )
       {
         edges {
           node {
@@ -25,21 +26,21 @@ module.exports.data = `{
             snippet
             abstract
             type
+            sourceInstanceName
             ... on MdxBlogPost {
               parent {
-                ... on Mdx {
-                  body
-                  timeToRead
-                  wordCount {
-                    words
-                  }
-                }
+               ... on Mdx {
+                 timeToRead
+                 wordCount {
+                   words
+                 }
+               }
               }
             }
           }
         }
       }
-      wallpapers: allFile(filter: { sourceInstanceName: { eq: "content/wallpapers" } })
+      wallpapers: allFile(filter: { sourceInstanceName: { eq: $wallpapers } })
       {
         edges {
           node {
@@ -55,17 +56,7 @@ module.exports.data = `{
           }
         }
       }
-      post_images: allFile(filter: { sourceInstanceName: { regex: "/content/.*/images/" } })
-      {
-        edges {
-          node {
-            publicURL
-            name
-            relativeDirectory
-          }
-        }
-      }
-      grid_images: allFile(filter: {sourceInstanceName: {regex: "/content/.*/images/"}, relativeDirectory: {eq: ""}})
+      post_images: allFile(filter: { sourceInstanceName: { eq: $images } })
       {
         edges {
           node {

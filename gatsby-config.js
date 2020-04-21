@@ -16,53 +16,32 @@ module.exports = themeOptions => {
       {
         resolve: `gatsby-source-filesystem`,
         options: {
-          path: `content/core`,
-          name: `content/core`,
+          path: options.postsPath || `content/posts/entries`,
+          name: options.postsPath || `content/posts/entries`,
         },
       },
-      {
+      options.postImagesPath && {
         resolve: `gatsby-source-filesystem`,
         options: {
           path: options.postImagesPath || `content/posts/images`,
           name: options.postImagesPath || `content/posts/images`,
         },
       },
-      {
+      options.wallpapersPath && {
         resolve: `gatsby-source-filesystem`,
         options: {
-          path: options.postsPath || `content/posts`,
-          name: options.postsPath || `content/posts`,
-        },
-      },
-      options.recipesImagesPath && {
-        resolve: `gatsby-source-filesystem`,
-        options: {
-          path: options.recipesImagesPath || `content/recipes/images`,
-          name: options.recipesImagesPath || `content/recipes/images`,
-        },
-      },
-      options.recipesPath && {
-        resolve: `gatsby-source-filesystem`,
-        options: {
-          path: options.recipesPath || `content/recipes`,
-          name: options.recipesPath || `content/recipes`,
+          path: options.wallpapersPath || `content/posts/wallpapers`,
+          name: options.wallpapersPath || `content/posts/wallpapers`,
         },
       },
       {
         resolve: `gatsby-source-filesystem`,
         options: {
-          path: options.wallpapersPath || `content/wallpapers`,
-          name: options.wallpapersPath || `content/wallpapers`,
+          path: `content/pages/wallpapers`,
+          name: `content/pages/wallpapers`,
         },
       },
-      {
-        resolve: `gatsby-source-filesystem`,
-        options: {
-          path: options.iconsPath || `content/icons`,
-          name: options.iconsPath || `content/icons`,
-        },
-      },
-      {
+      options.pagesPath && {
         resolve: `gatsby-plugin-page-creator`,
         options: {
           path: options.pagesPath || `content/pages`,

@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 export const useQuery = () =>
   useStaticQuery(graphql`
     query PageQuery {
-      wallpapers: allFile(filter: { sourceInstanceName: { eq: "content/wallpapers" } }) {
+      wallpapers: allFile(filter: { sourceInstanceName: { eq: "content/pages/wallpapers" } }) {
         edges {
           node {
             relativeDirectory

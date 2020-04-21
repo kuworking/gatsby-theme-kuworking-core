@@ -1,44 +1,29 @@
 import React from 'react'
-import { get_image_versions, post_structure, get_last_slug } from './methods-template'
-import { Structure } from '../components/structure'
+import { StructureGrid } from '../components/structure-grid'
 
-export default ({ pageContext, data }) => {
+export default ({ pageContext }) => {
   const {
     tag,
     global_tags,
     pre_path,
     basePath,
     thePath,
+    types,
     num_of_pages,
     current_page,
-    raw_posts,
+    posts,
     wallpapers, // eslint-disable-line no-unused-vars
     post_images,
+    this_is_a_tag_search,
   } = pageContext
 
-  const images = {
-    images: post_images || '',
-  }
-
-  const allPosts = data.allTagPosts ? data.allTagPosts.edges : data.allBlogPost.edges
-  const posts = []
-
-  allPosts.forEach(({ node: post }, index) => {
-    const image = get_image_versions(post_images, get_last_slug(post.slug))
-    posts.push({
-      ...post_structure(post, image),
-      key: 'post_' + index,
-    })
-  })
-
   return (
-    <Structure
+    <StructureGrid
       type="grid"
       blogGrid={{
-        images: images,
-        posts: posts,
-        raw_posts: raw_posts,
-        thePath: thePath,
+        posts,
+        types,
+        thePath,
         pagination: {
           basePath,
           pre_path,
@@ -50,7 +35,7 @@ export default ({ pageContext, data }) => {
           next_page: `${pre_path}/` + (current_page + 1).toString(),
         },
         tags: {
-          tags_grid: data.allTagPosts ? true : false,
+          tags_grid: this_is_a_tag_search ? true : false,
           tag: tag,
           global_tags: global_tags,
         },

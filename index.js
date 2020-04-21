@@ -1,6 +1,7 @@
 export { Pagination } from './src/components/pagination'
 export { config, text, seoText } from './src/utils/config'
 export { Page } from './src/templates/page-template'
+export { build_post_structure, structure_image_versions } from './src/gatsby-node/methodses6'
 
 export {
   SEO,
@@ -10,11 +11,10 @@ export {
   Switch,
   Spinner01,
   SocialShare,
-  Box,
+  Modal,
   Fade,
   Toggle,
   Move,
-  Neutral,
   TextLetterFade,
   TextLetterFade2,
   TextPeek,
