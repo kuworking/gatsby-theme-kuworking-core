@@ -5,7 +5,7 @@ import { StructurePage } from '../components/structure-page'
 
 export const Page = ({ type = 'page', page, ...props }) => {
   const { thePath, basePath, wallpaper } = page
-  const { wallpapers } = wallpaper && useQuery()
+  const { wallpapers } = useQuery()
 
   const images = {
     wallpapers: (wallpapers && wallpapers.edges) || '',
