@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-kuworking-core",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "gatsby-theme-kuworking-core",
   "main": "index.js",
   "author": "kuworking.com",
@@ -43,7 +43,7 @@
     "gatsby-remark-copy-linked-files": "2.2.1",
     "gatsby-remark-images": "3.2.1",
     "gatsby-source-filesystem": "2.2.2",
-    "gatsby-theme-kuworking-methods": "^0.1.13",
+    "gatsby-theme-kuworking-methods": "^0.1.14",
     "gatsby-transformer-sharp": "2.4.3",
     "remark-slug": "6.0.0",
     "theme-ui": "0.3.1"
