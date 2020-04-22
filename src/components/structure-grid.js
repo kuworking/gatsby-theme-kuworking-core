@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { useColorMode } from 'theme-ui'
 import { modes } from '../gatsby-plugin-theme-ui/index'
 import { SEO, Switch } from 'gatsby-theme-kuworking-core'
+import { Helmet } from 'react-helmet'
 
 const grid_maxwidth = '1000px'
 const post_maxwidth = '800px'

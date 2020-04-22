@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-kuworking-core",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "gatsby-theme-kuworking-core",
   "main": "index.js",
   "author": "kuworking.com",
@@ -35,7 +35,7 @@
     "gatsby-plugin-mdx": "1.1.6",
     "gatsby-plugin-offline": "3.1.2",
     "gatsby-plugin-page-creator": "2.2.1",
-    "gatsby-plugin-react-helmet": "3.2.1",
+    "gatsby-plugin-react-helmet": "3.2.4",
     "gatsby-plugin-robots-txt": "1.5.0",
     "gatsby-plugin-sharp": "2.5.3",
     "gatsby-plugin-sitemap": "2.3.1",
@@ -43,8 +43,9 @@
     "gatsby-remark-copy-linked-files": "2.2.1",
     "gatsby-remark-images": "3.2.1",
     "gatsby-source-filesystem": "2.2.2",
-    "gatsby-theme-kuworking-methods": "^0.1.14",
+    "gatsby-theme-kuworking-methods": "^0.1.15",
     "gatsby-transformer-sharp": "2.4.3",
+    "react-helmet": "6.0.0",
     "remark-slug": "6.0.0",
     "theme-ui": "0.3.1"
   },
