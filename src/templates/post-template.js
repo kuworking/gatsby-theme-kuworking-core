@@ -4,6 +4,7 @@ import { StructurePost } from '../components/structure-post'
 export default ({ pageContext, data }) => {
   const { thePath, post, post_images, related_posts, wallpapers, basePath, pre_path } = pageContext
   post.content = data.current.parent.body
+  post.exports = data.current.parent.exports
 
   return (
     <StructurePost

@@ -14,7 +14,7 @@ const {
 
 const GlobalQuery = require(`../queries/global-query`)
 const PostTemplate = require.resolve(`../queries/post-query`)
-const PostsTemplate = require.resolve(`../templates/posts-template`)
+const PostsTemplate = require.resolve(`../queries/posts-query`)
 
 exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   const { createPage } = actions
@@ -183,6 +183,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           basePath: basePath,
           pre_path: basePath, // different when creating tags
           id: post.id,
+          folder: `/${post.name.split('/')[0]}\//`,
           previousId: previous ? previous.id : undefined,
           nextId: next ? next.id : undefined,
         },

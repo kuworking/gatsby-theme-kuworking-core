@@ -65,6 +65,8 @@ exports.onCreateNode = async ({ node, actions, getNode, createNodeId }, themeOpt
       type: node.frontmatter.type || '',
       snippet: node.frontmatter.snippet || '',
       abstract: node.frontmatter.abstract || '',
+      extra1: node.frontmatter.extra1 || '',
+      extra2: node.frontmatter.extra2 || '',
       sourceInstanceName: source,
     }
 

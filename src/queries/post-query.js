@@ -12,6 +12,9 @@ export const query = graphql`
         parent {
           ... on Mdx {
             body
+            exports {
+              image
+            }
           }
         }
       }

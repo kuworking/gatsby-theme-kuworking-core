@@ -1,5 +1,8 @@
-// https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-transformer-sharp/src/fragments.js
+/**
+ * Not shadowable
+ */
 
+// https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-transformer-sharp/src/fragments.js
 const GatsbyImageSharpFluid_noBase64 = `
   aspectRatio
   src

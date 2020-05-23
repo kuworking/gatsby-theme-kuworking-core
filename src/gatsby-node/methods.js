@@ -62,8 +62,11 @@ exports.post_structure = (post, image) => ({
   description: post.snippet,
   name: post.slug.replace(/^\//, ''), // needed for the 1st slash, the last one is already removed
   slug: post.slug,
+  extra1: post.extra1,
+  extra2: post.extra2,
   full_image: image && image.standard,
   image_versions: image || '',
+  exports: post.parent ? post.parent.exports : '', // at the moment will always be empty
 })
 
 // remove the trailing dashes, still, not well resolved, only applies to pages here

@@ -17,6 +17,7 @@ module.exports = themeOptions => {
     type_that_have_images: themeOptions.type_that_have_images || [],
 
     mdx: themeOptions.mdx,
+    prismjs: themeOptions.prismjs || false,
     folders_to_check: themeOptions.folders_to_check,
 
     manifest: themeOptions.manifest,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StructureGrid } from '../components/structure-grid'
 
-export default ({ pageContext }) => {
+export default ({ pageContext, data = null }) => {
   const {
     tag,
     global_tags,
@@ -22,6 +22,7 @@ export default ({ pageContext }) => {
       type="grid"
       blogGrid={{
         posts,
+        query: data,
         types,
         thePath,
         pagination: {
