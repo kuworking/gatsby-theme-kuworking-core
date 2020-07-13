@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-kuworking-core",
-  "version": "0.2.35",
+  "version": "0.2.36",
   "description": "gatsby-theme-kuworking-core",
   "main": "index.js",
   "author": "kuworking.com",
@@ -43,7 +43,7 @@
     "gatsby-remark-images": "3.3.18",
     "gatsby-remark-inline-codesandbox": "0.5.2",
     "gatsby-source-filesystem": "2.3.19",
-    "gatsby-theme-kuworking-methods": "^0.1.31",
+    "gatsby-theme-kuworking-methods": "^0.1.32",
     "gatsby-transformer-sharp": "2.5.11",
     "prism-react-renderer": "1.1.1",
     "prismjs": "1.20.0",
