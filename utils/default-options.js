@@ -18,6 +18,7 @@ module.exports = themeOptions => {
 
     mdx: themeOptions.mdx,
     prismjs: themeOptions.prismjs || false,
+    codesandboxMeta: themeOptions.codesandboxMeta || false,
     folders_to_check: themeOptions.folders_to_check,
 
     manifest: themeOptions.manifest,

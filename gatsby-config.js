@@ -6,7 +6,7 @@ module.exports = themeOptions => {
     {
       resolve: 'gatsby-remark-inline-codesandbox',
       options: {
-        mode: 'button',
+        mode: (options.codesandboxMeta && 'meta') || 'button',
       },
     },
   ]
